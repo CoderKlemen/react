@@ -1,0 +1,56 @@
+import React, { Component } from "react";
+import "./App.css";
+
+
+const numbers = [1,2,3,4,5];
+
+let numbers1 = [1,2,3,4,5];
+
+class App2 extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      numbers: numbers,
+      numbers1: numbers1,
+    }
+  }
+
+  myFunctMap() {
+    return  (
+      this.state.numbers.map( num => {
+        return (
+          <li key={num.toString()}>
+            {num}
+          </li>
+        ) 
+      })
+    );
+  }
+
+  myFunctReduce() {
+    return (
+      this.state.numbers1.reduce( (acc, cur) => {
+        return acc + cur;
+      })
+    );
+  }
+
+  render() {
+    // - "className" equals class in HTML
+    // - arrow function without brackets and return statement has a "concise body"
+    // - you can move parts of render to a function and use that function in render!
+    return (
+      <div className="App">
+        <h3>--App2--</h3>
+        {this.myFunctMap()}
+        <p>
+          {this.myFunctReduce()}
+        </p>
+      </div>
+    );
+  }
+}
+
+export default App2;

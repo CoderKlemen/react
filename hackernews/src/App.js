@@ -20,41 +20,52 @@ const list = [
   }
 ];
 
-const numbers = [1,2,3,4,5];
-
-let numbers1 = [1,2,3,4,5];
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      //list: list,
+      list,
+    }
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  // removes a displayed item when you click the "Dismiss" button
+  onDismiss(id) {
+    const isNotId = item => item.objectID !== id;
+    const updatedList = this.state.list.filter(isNotId);
+    this.setState({ list: updatedList });
+  }
+
   render() {
-    // "className" equals class in HTML
-    // arrow function without brackets and return statement has a "concise body"
+    // - "className" equals class in HTML
+    // - arrow function without brackets and return statement has a "concise body"
+    // - we use "this.state" to access the local state to map it on the page
+    // - you can use shorthand to initialize object, where properties name is the same as variable name!
     return (
       <div className="App">
-        {list.map( item => 
+        <h3>--App--</h3>
+        {this.state.list.map( item => 
             <div key={item.objectID}>
               <span>
                 <a href={item.url}>{item.title}</a>
               </span>
               <span> - {item.author}</span>
               <span>; {item.num_comments}</span>
-              <span>, {item.points}</span>
+              <span>, {item.points} </span>
+              <span>
+                <button 
+                  onClick={() => this.onDismiss(item.objectID)}
+                  type="button"
+                >
+                  Dismiss
+                </button>
+              </span>
             </div>
           )
         }
-        {
-          numbers.map( num => {
-            return (
-              <li key={num.toString()}>
-                {num}
-              </li>
-            ) 
-          })
-        }
-        <p>
-          {numbers1.reduce( (acc, cur) => {
-            return acc + cur;
-          })}
-        </p>
       </div>
     );
   }

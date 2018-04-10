@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import App2 from './App2';
+import ExplainBindingsComponent from './ExplainBind'
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
                 <div>
                     <App />
-                    <App2 /> 
+                    <App2 />
+                    <ExplainBindingsComponent /> 
                 </div>
                 )
                 , document.getElementById('root'));

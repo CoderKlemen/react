@@ -14,8 +14,9 @@ class App2 extends Component {
     this.state = {
       numbers: numbers,
       numbers1: numbers1,
+      date: new Date(),
     }
-  }
+  };
 
   myFunctMap() {
     return  (
@@ -27,7 +28,7 @@ class App2 extends Component {
         ) 
       })
     );
-  }
+  };
 
   myFunctReduce() {
     return (
@@ -35,7 +36,19 @@ class App2 extends Component {
         return acc + cur;
       })
     );
+  };
+
+  // runs after the component output has been rendered to the DOM
+  // good place for a timer, ...
+  componentDidMount() {
+
   }
+
+  // runs when component is destroyed???
+  // you can cancel the timer here, and other stuff too ...
+  componentWillUnmount() {
+
+  };
 
   render() {
     // - "className" equals class in HTML
@@ -48,9 +61,10 @@ class App2 extends Component {
         <p>
           {this.myFunctReduce()}
         </p>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
-  }
+  };
 }
 
 export default App2;

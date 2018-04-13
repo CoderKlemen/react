@@ -68,6 +68,9 @@ class App extends Component {
     // - Event handlers: 
     //    - you need to wrap the function in another function to make it fire when needed ( button click )
     //    - you can make it more concise using arrow functions
+
+    const {searchTerm, list} = this.state;
+
     return (
       <div className="App">
         <h3>--App--</h3>
@@ -76,7 +79,7 @@ class App extends Component {
             onChange={this.onSearchChange}
           />
         </form>
-        {this.state.list.filter(isSearched(this.state.searchTerm)).map( item => 
+        {this.state.list.filter(isSearched(searchTerm)).map( item => 
             <div key={item.objectID}>
               <span>
                 <a href={item.url}>{item.title}</a>

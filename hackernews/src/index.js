@@ -5,6 +5,7 @@ import App from './App';
 import App2 from './App2';
 import ExplainBindingsComponent from './ExplainBind'
 import EventHandling from './EventHandling'
+import Toggle from './Toggle'
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
@@ -12,8 +13,8 @@ ReactDOM.render((
                     <App />
                     <App2 />
                     <ExplainBindingsComponent />
-                    <hr/>
                     <EventHandling />
+                    <Toggle />
                 </div>
                 )
                 , document.getElementById('root'));

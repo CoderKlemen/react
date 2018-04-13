@@ -5,7 +5,7 @@ import "./App.css";
 class EventHandling extends Component {
 
     handleClick(e) {
-        e.preventDefault(); // to override the default behaviour, so we can log out a message!!!
+        //e.preventDefault(); // to override the default behaviour of opening a new page, so we can log out a message!!!
         console.log('The link was clicked');
     };
 

@@ -6,6 +6,7 @@ import App2 from './App2';
 import ExplainBindingsComponent from './ExplainBind'
 import EventHandling from './EventHandling'
 import Toggle from './Toggle'
+import NameForm from './Form'
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
@@ -15,6 +16,7 @@ ReactDOM.render((
                     <ExplainBindingsComponent />
                     <EventHandling />
                     <Toggle />
+                    <NameForm />
                 </div>
                 )
                 , document.getElementById('root'));

@@ -11,7 +11,7 @@ class EventHandling extends Component {
 
     render() {
         return (
-            <a href="#" onClick={this.handleClick}>
+            <a href="https://www.klebe.si" target="_blank" rel="noopener noreferrer" onClick={this.handleClick}>
                 Click me!
             </a>
         );

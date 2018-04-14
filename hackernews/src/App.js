@@ -69,13 +69,15 @@ class App extends Component {
     //    - you need to wrap the function in another function to make it fire when needed ( button click )
     //    - you can make it more concise using arrow functions
 
-    const {searchTerm, list} = this.state;
+    const {searchTerm} = this.state;
 
     return (
       <div className="App">
         <h3>--App--</h3>
         <form>
-          <input type="text" 
+          <input 
+            type="text"
+            value={searchTerm}
             onChange={this.onSearchChange}
           />
         </form>

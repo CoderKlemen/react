@@ -5,6 +5,17 @@ import "./App.css";
 const numbers = [1,2,3,4,5];
 
 let numbers1 = [1,2,3,4,5];
+let first;
+let second;
+let third;
+
+
+// Destructuring assignment
+[first, second, ...third] = numbers1;
+
+console.log(first);
+console.log(second);
+console.log(third);
 
 class App2 extends Component {
 

@@ -20,7 +20,7 @@ class NameForm extends Component {
     }
 
     handleSubmit(event) {
-        alert(`Your favorite flavour is: ${this.state.value}`);  // " ` " se dobi z AltGr+7
+        alert(`Your favorite flavour is ${this.state.value}.`);  // " ` " se dobi z AltGr+7
         event.preventDefault();
     }
 

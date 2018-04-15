@@ -8,10 +8,12 @@ import EventHandling from './EventHandling'
 import Toggle from './Toggle'
 import NameForm from './Form'
 import registerServiceWorker from './registerServiceWorker';
+import AppOld1 from './App_oldVersion1';
 
 ReactDOM.render((
                 <div>
                     <App />
+                    <AppOld1 />
                     <App2 />
                     <ExplainBindingsComponent />
                     <EventHandling />

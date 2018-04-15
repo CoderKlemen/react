@@ -28,9 +28,6 @@ const list = [
   },
 ];
 
-// isSearched returns a true/false if item.title includes searchTerm
-// we type searchTerm in the form, and item is an object in the "list"
-// we can access it because of the returned funtion (higher-order function) 
 const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
@@ -38,7 +35,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      //list: list,
       list,
       searchTerm: '',
     }
@@ -61,46 +57,65 @@ class App extends Component {
   }
 
   render() {
-    // - "className" equals class in HTML
-    // - arrow function without brackets and return statement has a "concise body"
-    // - we use "this.state" to access the local state to map it on the page
-    // - you can use shorthand to initialize object, where properties name is the same as variable name!
-    // - Event handlers: 
-    //    - you need to wrap the function in another function to make it fire when needed ( button click )
-    //    - you can make it more concise using arrow functions
 
-    const {searchTerm} = this.state;
+    const {searchTerm, list} = this.state; // destructuring assignment
 
     return (
       <div className="App">
         <h3>--App--</h3>
-        <form>
-          <input 
-            type="text"
-            value={searchTerm}
-            onChange={this.onSearchChange}
-          />
-        </form>
-        {this.state.list.filter(isSearched(searchTerm)).map( item => 
-            <div key={item.objectID}>
-              <span>
-                <a href={item.url}>{item.title}</a>
-              </span>
-              <span> - {item.author}</span>
-              <span>; {item.num_comments}</span>
-              <span>, {item.points} </span>
-              <span>
-                <button 
-                  onClick={() => this.onDismiss(item.objectID)}  // arrow function is an event wrapper
-                  // onClick={() => console.log(item.objectID)}
-                  type="button"
-                >
-                  Dismiss
-                </button>
-              </span>
-            </div>
-          )
-        }
+        <Search 
+          value={searchTerm}
+          onChange={this.onSearchChange}
+        />
+        <Table 
+          list={list}
+          pattern={searchTerm}
+          onDismiss={this.onDismiss}
+        />
+      </div>
+    );
+  }
+}
+
+class Search extends Component {
+  render() {
+    const {value, onChange} = this.props;
+    
+    return (
+      <form>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
+      </form>
+    );
+  }
+}
+
+class Table extends Component {
+  render() {
+    const { list, pattern, onDismiss } = this.props;
+    return (
+      <div>
+        {list.filter(isSearched(pattern)).map(item =>
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span> - {item.author}</span>
+            <span>, {item.num_comments}</span>
+            <span>, {item.points} </span>
+            <span>
+              <button
+                onClick={() => onDismiss(item.objectID)}
+                type="button"
+              >
+                Dismiss
+              </button>
+            </span>
+          </div>
+        )}
       </div>
     );
   }

@@ -109,16 +109,35 @@ class Table extends Component {
             <span>, {item.num_comments}</span>
             <span>, {item.points} </span>
             <span>
-              <button
-                onClick={() => onDismiss(item.objectID)}
-                type="button"
-              >
+              <Button
+                onClick={() => onDismiss(item.objectID)}>
                 Dismiss
-              </button>
+              </Button>
             </span>
           </div>
         )}
       </div>
+    );
+  }
+}
+
+// you can create reusable components -> it's easier to make changes later, you only need to change the component
+class Button extends Component {
+  render() {
+    const {
+      onClick,
+      className = '',   // className is optional; if it's not defined it will be '' instead of "undefined"!
+      children,
+     } = this.props;
+
+    return (
+      <button 
+        onClick={onClick}
+        className={className}
+        type="button"
+      >
+        {children}
+      </button>
     );
   }
 }

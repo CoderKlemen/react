@@ -36,6 +36,19 @@ const list = [
   },
 ];
 
+// you can define style directly on the element, or outside to make them cleaner
+const largeColumn = {
+  width: '40%',
+};
+
+const midColumn = {
+  width: '30%',
+};
+
+const smallColumn = {
+  width: '10%',
+};
+
 const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
@@ -69,14 +82,16 @@ class App extends Component {
     const {searchTerm, list} = this.state; // destructuring assignment
 
     return (
-      <div className="App">
+      <div className="page">
         <h3>--App--</h3>
-        <Search 
-          value={searchTerm}
-          onChange={this.onSearchChange}
-        > 
-          Search
-        </Search>
+        <div className="interactions">
+          <Search 
+            value={searchTerm}
+            onChange={this.onSearchChange}
+          > 
+            Search
+          </Search>
+        </div>
         <Table 
           list={list}
           pattern={searchTerm}
@@ -101,18 +116,26 @@ const Search = ({children, value, onChange}) =>
 
 
 const Table = ({list, item, pattern, onDismiss}) =>
-  <div>
+  <div className="table">
     {list.filter(isSearched(pattern)).map(item =>
-      <div key={item.objectID}>
-        <span>
+      <div key={item.objectID} className="table-row">
+        <span style={largeColumn}>
           <a href={item.url}>{item.title}</a>
         </span>
-        <span> - {item.author}</span>
-        <span>, {item.num_comments}</span>
-        <span>, {item.points} </span>
-        <span>
+        <span style={midColumn}>
+          {item.author}
+        </span>
+        <span  style={smallColumn}>
+          {item.num_comments}
+        </span>
+        <span style={smallColumn}>
+          {item.points}
+        </span>
+        <span  style={smallColumn}>
           <Button
-            onClick={() => onDismiss(item.objectID)}>
+            onClick={() => onDismiss(item.objectID)}
+            className="button-inline"
+          >
             Dismiss
           </Button>
         </span>

@@ -26,6 +26,14 @@ const list = [
     points: 10,
     objectID: 2
   },
+  {
+    title: "C++ Primer",
+    url: "https://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113",
+    author: "Stanley B. Lippman",
+    num_comments: 4,
+    points: 12,
+    objectID: 3
+  },
 ];
 
 const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -79,67 +87,48 @@ class App extends Component {
   }
 }
 
-class Search extends Component {
-  render() {
-    const {value, onChange, children} = this.props;
-    
-    return (
-      <form>
-        {children} <input
-          type="text"
-          value={value}
-          onChange={onChange}
-        />
-      </form>
-    );
-  }
-}
+// you can make a "Functional Stateless Component" a concise arrow function
+// - you can still have something before return, if you want to...
+const Search = ({children, value, onChange}) =>   
+  <form>
+    {children} <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+  </form>
 
-class Table extends Component {
-  render() {
-    const { list, pattern, onDismiss } = this.props;
-    return (
-      <div>
-        {list.filter(isSearched(pattern)).map(item =>
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span> - {item.author}</span>
-            <span>, {item.num_comments}</span>
-            <span>, {item.points} </span>
-            <span>
-              <Button
-                onClick={() => onDismiss(item.objectID)}>
-                Dismiss
-              </Button>
-            </span>
-          </div>
-        )}
+
+
+const Table = ({list, item, pattern, onDismiss}) =>
+  <div>
+    {list.filter(isSearched(pattern)).map(item =>
+      <div key={item.objectID}>
+        <span>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span> - {item.author}</span>
+        <span>, {item.num_comments}</span>
+        <span>, {item.points} </span>
+        <span>
+          <Button
+            onClick={() => onDismiss(item.objectID)}>
+            Dismiss
+          </Button>
+        </span>
       </div>
-    );
-  }
-}
+    )}
+  </div>
 
 // you can create reusable components -> it's easier to make changes later, you only need to change the component
-class Button extends Component {
-  render() {
-    const {
-      onClick,
-      className = '',   // className is optional; if it's not defined it will be '' instead of "undefined"!
-      children,
-     } = this.props;
+const Button = ({onClick, className, children}) =>
+  <button 
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
 
-    return (
-      <button 
-        onClick={onClick}
-        className={className}
-        type="button"
-      >
-        {children}
-      </button>
-    );
-  }
-}
 
 export default App;

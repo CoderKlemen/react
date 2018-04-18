@@ -10,6 +10,7 @@ import NameForm from './Form'
 import registerServiceWorker from './registerServiceWorker';
 import AppOld1 from './App_oldVersion1';
 import Composition1 from './Composition1';
+import StyledComponent from './StyledComponent';
 
 ReactDOM.render((
                 <div>
@@ -21,6 +22,7 @@ ReactDOM.render((
                     <Toggle />
                     <NameForm />
                     <Composition1 />
+                    <StyledComponent />
                 </div>
                 )
                 , document.getElementById('root'));

@@ -12,24 +12,31 @@ import AppOld1 from './App_oldVersion1';
 import Composition1 from './Composition1';
 import StyledComponent from './StyledComponent';
 import Clock from './Clock'
+import ErrorBoundary from './ErrorBoundary'
 
 ReactDOM.render((
                 <div>
-                    <App />
-                    <AppOld1 />
-                    <App2 />
-                    <ExplainBindingsComponent />
-                    <EventHandling />
-                    <Toggle />
-                    <NameForm />
-                    <Composition1 />
-                    <StyledComponent />
+                    <ErrorBoundary>
+                        <App />
+                        <AppOld1 />
+                        <App2 />
+                        <ExplainBindingsComponent />
+                        <EventHandling />
+                        <Toggle />
+                        <NameForm />
+                        <Composition1 />
+                        <StyledComponent />
+                    </ErrorBoundary>
                 </div>
                 )
                 , document.getElementById('root'));
 
+
+// Each clock has it's own timer!!! 
 ReactDOM.render((
             <div>
+                <Clock />
+                <Clock />
                 <Clock />
             </div>
             )

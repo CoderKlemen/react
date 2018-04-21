@@ -42,7 +42,7 @@ class StyledComponent extends Component {
                     <Title>Hello World, this is my first styled component!</Title>
                 </Wrapper>
                 <Input placeholder="@mxstbr" type="text" />
-                <Input value="@geelen" type="text" />
+                <Input value="@geelen" type="text" readOnly />
                 <Button>Normal</Button>
                 <Button primary>Primary</Button>
             </div>       

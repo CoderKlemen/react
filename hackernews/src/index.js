@@ -11,6 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 import AppOld1 from './App_oldVersion1';
 import Composition1 from './Composition1';
 import StyledComponent from './StyledComponent';
+import Clock from './Clock'
 
 ReactDOM.render((
                 <div>
@@ -26,6 +27,25 @@ ReactDOM.render((
                 </div>
                 )
                 , document.getElementById('root'));
+
+ReactDOM.render((
+            <div>
+                <Clock />
+            </div>
+            )
+            , document.getElementById('my_root'));
+
+
+/*
+function Clock(props) {
+    return (
+        <div>
+            <h3>Current time: </h3>
+            <span>{props.date.toLocaleTimeString()}</span> 
+        </div>
+    );
+};
+*/
 
 /*
 // foolin around

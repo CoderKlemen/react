@@ -36,8 +36,6 @@ ReactDOM.render((
 ReactDOM.render((
             <div>
                 <Clock />
-                <Clock />
-                <Clock />
             </div>
             )
             , document.getElementById('my_root'));

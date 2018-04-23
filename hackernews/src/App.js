@@ -52,8 +52,16 @@ class App extends Component {
   // removes a displayed item when you click the "Dismiss" button
   onDismiss(id) {
     const isNotId = item => item.objectID !== id;
-    const updatedList = this.state.list.filter(isNotId);
-    this.setState({ list: updatedList });
+    const updatedHits = this.state.result.hits.filter(isNotId);
+    /*
+    // this works
+    this.setState({ 
+      result: Object.assign({}, this.state.result, {hits: updatedHits})
+    });*/
+    // but this is more React way!!!
+    this.setState({
+      result: {...this.state.result, hits: updatedHits }
+    })
   };
 
   // you can access synthetic React events

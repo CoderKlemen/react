@@ -9,6 +9,29 @@ let first;
 let second;
 let third;
 
+// array spread operator
+const userList = ['Polde', 'Stef', 'Matija'];
+const otherUsers = ['Lujo', 'Gosencic'];
+const additionalUser = 'Vidic';
+const allUsers = [...userList, additionalUser];
+/* 
+this way you disable ESLint warning just for one line and one specific warning !!!! 
+- very useful and the correct way to do it!!!!
+- glej spodaj !!!! 
+*/
+//eslint-disable-next-line no-unused-vars
+const LSUsers = [...userList, ...otherUsers];
+
+console.log(allUsers);
+// console.log(LSUsers);
+
+// object spread operator
+const userNames = { firstName: 'Polde', lastName: 'Polencek'};
+const userAge = { age: 18 };
+const user = {...userNames, ...userAge };
+
+console.log(user);
+
 
 // Destructuring assignment
 [first, second, ...third] = numbers1;

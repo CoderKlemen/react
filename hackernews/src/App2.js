@@ -3,6 +3,7 @@ import "./App.css";
 
 
 const numbers = [1,2,3,4,5];
+// const numbers = [];  // used to test conditional rendering..
 
 let numbers1 = [1,2,3,4,5];
 let first;
@@ -88,6 +89,10 @@ class App2 extends Component {
     // - "className" equals class in HTML
     // - arrow function without brackets and return statement has a "concise body"
     // - you can move parts of render to a function and use that function in render!
+    if (! numbers.length) {
+      return <p>Numbers is empty!</p>
+    }
+
     return (
       <div className="App">
         <h3>--App2--</h3>

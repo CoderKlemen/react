@@ -70,12 +70,12 @@ class App extends Component {
 
   };
 
+
+  // conditional rendering with ternary operator
+  // you can also use logical AND '&&' operator
   render() {
 
     const {searchTerm, result} = this.state; // destructuring assignment
-
-    if (!result) { return null; };
-
     return (
       <div className="page">
         <h3>--App--</h3>
@@ -87,11 +87,15 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table 
-          list={result.hits}
-          pattern={searchTerm}
-          onDismiss={this.onDismiss}
-        />
+        { result 
+          ? <Table 
+            list={result.hits}
+            pattern={searchTerm}
+            onDismiss={this.onDismiss}
+          />
+          : null
+        }
+        
       </div>
     );
   };

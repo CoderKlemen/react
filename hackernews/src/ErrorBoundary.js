@@ -19,6 +19,7 @@ class ErrorBoundary extends Component {
         console.log(`Info: ${info}.`);
     }
 
+    // conditional rendering used!!!
     render() {
         if (this.state.hasError) {
             return <h1>Something went wrong!</h1>;

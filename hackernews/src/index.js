@@ -14,6 +14,7 @@ import StyledComponent from './StyledComponent';
 import Clock from './Clock'
 import ErrorBoundary from './ErrorBoundary'
 import Conditional from './Conditional';
+import Synthetic from './Synthetic';
 
 ReactDOM.render((
                 <div>
@@ -38,6 +39,7 @@ ReactDOM.render((
             <div>
                 <Clock />
                 <Conditional />
+                <Synthetic />
             </div>
             )
             , document.getElementById('my_root'));

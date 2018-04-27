@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-const DEFAULT_QUERY = 'qt';
+const DEFAULT_QUERY = 'html';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -9,18 +9,18 @@ const PARAM_SEARCH = 'query=';
 
 // you can define style directly on the element, or outside to make them cleaner
 const largeColumn = {
-  width: '40%',
+  width: '64%',
 };
 
 const midColumn = {
-  width: '30%',
+  width: '15%',
 };
 
 const smallColumn = {
-  width: '10%',
+  width: '7%',
 };
 
-const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
+//const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
   constructor(props) {
@@ -34,20 +34,26 @@ class App extends Component {
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
   };
 
   setSearchTopStories(result) {
     this.setState({ result });
   };
 
-  componentDidMount() {
-    const { searchTerm } = this.state;
-
+  fetchSearchTopStories(searchTerm) {
+    console.log(searchTerm);
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(error => error);
-  }
+  };
+
+  componentDidMount() {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+  };
 
   // removes a displayed item when you click the "Dismiss" button
   onDismiss(id) {
@@ -70,6 +76,12 @@ class App extends Component {
 
   };
 
+  onSearchSubmit(event) {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+    event.preventDefault();
+  };
+
 
   // conditional rendering with ternary operator
   // you can also use logical AND '&&' operator
@@ -83,6 +95,7 @@ class App extends Component {
           <Search 
             value={searchTerm}
             onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
           > 
             Search
           </Search>
@@ -90,12 +103,10 @@ class App extends Component {
         { result 
           ? <Table 
             list={result.hits}
-            pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
           : null
-        }
-        
+        }   
       </div>
     );
   };
@@ -103,20 +114,23 @@ class App extends Component {
 
 // you can make a "Functional Stateless Component" a concise arrow function
 // - you can still have something before return, if you want to...
-const Search = ({children, value, onChange}) =>   
-  <form>
-    {children} <input
+const Search = ({children, value, onChange, onSubmit}) =>   
+  <form onSubmit={onSubmit}>
+    <input
       type="text"
       value={value}
       onChange={onChange}
     />
+    <button type="submit">
+      {children} 
+    </button>
   </form>
 
 
 
-const Table = ({list, item, pattern, onDismiss}) =>
+const Table = ({list, onDismiss}) =>
   <div className="table">
-    {list.filter(isSearched(pattern)).map(item =>
+    {list.map(item =>
       <div key={item.objectID} className="table-row">
         <span style={largeColumn}>
           <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>

@@ -15,6 +15,7 @@ import Clock from './Clock'
 import ErrorBoundary from './ErrorBoundary'
 import Conditional from './Conditional';
 import Synthetic from './Synthetic';
+import LoginControl from './LoginControl';
 
 ReactDOM.render((
                 <div>
@@ -40,6 +41,7 @@ ReactDOM.render((
                 <Clock />
                 <Conditional />
                 <Synthetic />
+                <LoginControl />
             </div>
             )
             , document.getElementById('my_root'));

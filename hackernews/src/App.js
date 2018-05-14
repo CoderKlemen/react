@@ -4,8 +4,9 @@ import "./App.css";
 const DEFAULT_QUERY = 'html';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
-const PATH_SEARCH = '/search';
+const PATH_SEARCH = '/search_by_date';
 const PARAM_SEARCH = 'query=';
+const TAG_SEARCH = 'tags=story';
 
 // you can define style directly on the element, or outside to make them cleaner
 const largeColumn = {
@@ -44,7 +45,7 @@ class App extends Component {
 
   fetchSearchTopStories(searchTerm) {
     console.log(searchTerm);
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${TAG_SEARCH}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(error => error);

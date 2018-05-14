@@ -31,6 +31,8 @@ const userNames = { firstName: 'Polde', lastName: 'Polencek'};
 const userAge = { age: 18 };
 const user = {...userNames, ...userAge };
 
+const messages = ['React', 'Re: React', 'Re:Re: React'];
+
 console.log(user);
 
 
@@ -105,9 +107,26 @@ class App2 extends Component {
           // using arrow function to make sure the function is executed when we click the button
           onClick={() => console.log(this.state.date.toLocaleDateString())}
         > Date </button>
+        <Mailbox unreadMessages={messages} />
       </div>
     );
   };
 }
+
+function Mailbox(props) {
+  const unreadMessages = props.unreadMessages;
+  return ( 
+    <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 && 
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+    </div>
+  );
+};
+
+
 
 export default App2;

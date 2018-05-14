@@ -16,6 +16,7 @@ import ErrorBoundary from './ErrorBoundary'
 import Conditional from './Conditional';
 import Synthetic from './Synthetic';
 import LoginControl from './LoginControl';
+import Page from './Page'
 
 ReactDOM.render((
                 <div>
@@ -42,6 +43,7 @@ ReactDOM.render((
                 <Conditional />
                 <Synthetic />
                 <LoginControl />
+                <Page />
             </div>
             )
             , document.getElementById('my_root'));

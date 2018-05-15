@@ -8,12 +8,10 @@ import EventHandling from './EventHandling'
 import Toggle from './Toggle'
 import NameForm from './Form'
 import registerServiceWorker from './registerServiceWorker';
-import AppOld1 from './App_oldVersion1';
 import Composition1 from './Composition1';
 import StyledComponent from './StyledComponent';
 import Clock from './Clock'
 import ErrorBoundary from './ErrorBoundary'
-import Conditional from './Conditional';
 import Synthetic from './Synthetic';
 import LoginControl from './LoginControl';
 import Page from './Page'
@@ -22,8 +20,8 @@ ReactDOM.render((
                 <div>
                     <ErrorBoundary>
                         <App />
-                        <AppOld1 />
                         <App2 />
+                        <h3>--Different components--</h3>
                         <ExplainBindingsComponent />
                         <EventHandling />
                         <Toggle />
@@ -36,11 +34,10 @@ ReactDOM.render((
                 , document.getElementById('root'));
 
 
-// Each clock has it's own timer!!! 
 ReactDOM.render((
             <div>
+                <h3>--Different components--</h3>
                 <Clock />
-                <Conditional />
                 <Synthetic />
                 <LoginControl />
                 <Page />

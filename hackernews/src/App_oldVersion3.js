@@ -28,12 +28,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      results: null,
-      searchKey: '',
+      result: null,
       searchTerm: DEFAULT_QUERY,
     };
 
-    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
@@ -41,29 +39,8 @@ class App extends Component {
     this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
   };
 
-  needsToSearchTopStories(searchTerm) {
-    return !this.state.results[searchTerm];
-  }
-
   setSearchTopStories(result) {
-    const { hits, page } = result;
-    const { searchKey, results } = this.state;
-
-    const oldHits = results && results[searchKey] 
-      ? results[searchKey].hits 
-      : [];
-
-    const updatedHits = [
-      ...oldHits,
-      ...hits
-    ];
-
-    this.setState({ 
-      results: {
-        ...results,
-        [searchKey]: { hits: updatedHits, page }
-      }
-    });
+    this.setState({ result });
   };
 
   fetchSearchTopStories(searchTerm) {
@@ -76,17 +53,13 @@ class App extends Component {
 
   componentDidMount() {
     const { searchTerm } = this.state;
-    this.setState({searchKey: searchTerm });
     this.fetchSearchTopStories(searchTerm);
   };
 
   // removes a displayed item when you click the "Dismiss" button
   onDismiss(id) {
-    const {searchKey, results } = this.state;
-    const {hits, page } = results[searchKey];
-
     const isNotId = item => item.objectID !== id;
-    const updatedHits = hits.filter(isNotId);
+    const updatedHits = this.state.result.hits.filter(isNotId);
     /*
     // this works
     this.setState({ 
@@ -94,25 +67,19 @@ class App extends Component {
     });*/
     // but this is more React way!!!
     this.setState({
-      result: {
-        ...results,
-        [searchKey]: { hits: updatedHits, page }
-      }
+      result: {...this.state.result, hits: updatedHits }
     })
   };
 
   // you can access synthetic React events
   onSearchChange(event) {
     this.setState({ searchTerm: event.target.value});
+
   };
 
   onSearchSubmit(event) {
     const { searchTerm } = this.state;
-    this.setState({ searchKey: searchTerm });
-
-    if (this.needsToSearchTopStories(searchTerm)) {
-      this.fetchSearchTopStories(searchTerm);
-    }  
+    this.fetchSearchTopStories(searchTerm);
     event.preventDefault();
   };
 
@@ -121,24 +88,7 @@ class App extends Component {
   // you can also use logical AND '&&' operator
   render() {
 
-    const {
-      searchTerm, 
-      results,
-      searchKey 
-    } = this.state; // destructuring assignment
-
-    const page = (
-      results && 
-      results[searchKey] && 
-      results[searchKey].page
-    ) || 0;
-
-    const list = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].hits
-    ) || [];
-
+    const {searchTerm, result} = this.state; // destructuring assignment
     return (
       <div className="page">
         <h3>--App--</h3>
@@ -151,15 +101,13 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table 
-          list={list}
-          onDismiss={this.onDismiss}
-        />
-        <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-            More
-          </Button>  
-        </div>  
+        { result 
+          ? <Table 
+            list={result.hits}
+            onDismiss={this.onDismiss}
+          />
+          : null
+        }   
       </div>
     );
   };

@@ -102,7 +102,7 @@ class App2 extends Component {
         <p>
           {this.myFunctReduce()}
         </p>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h4>It is {this.state.date.toLocaleTimeString()}.</h4>
         <button type="button"
           // using arrow function to make sure the function is executed when we click the button
           onClick={() => console.log(this.state.date.toLocaleDateString())}

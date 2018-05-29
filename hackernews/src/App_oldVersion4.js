@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import "./App.css";
 
 const DEFAULT_QUERY = 'html';
@@ -26,8 +25,6 @@ const smallColumn = {
 //const isSearched = searchTerm => item => item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
 
@@ -76,22 +73,16 @@ class App extends Component {
       page = 0;
     }
     // console.log(searchTerm + ' ' + page);
-    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PAGE_SEARCH}${page}&${TAG_SEARCH}`)
-      // .then(response => response.json())
-      .then(result => this._isMounted && this.setSearchTopStories(result.data))
-      .catch(error => this._isMounted && this.setState({error}));
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PAGE_SEARCH}${page}&${TAG_SEARCH}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => this.setState({error}));
   };
 
   componentDidMount() {
-    this._isMounted = true;
-
     const { searchTerm } = this.state;
     this.setState({searchKey: searchTerm });
     this.fetchSearchTopStories(searchTerm);
-  };
-
-  componentWillUnmount() {
-    this._isMounted = false;
   };
 
   // removes a displayed item when you click the "Dismiss" button

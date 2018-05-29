@@ -14,7 +14,8 @@ import Clock from './Clock'
 import ErrorBoundary from './ErrorBoundary'
 import Synthetic from './Synthetic';
 import LoginControl from './LoginControl';
-import Page from './Page'
+import Page from './Page';
+import Counter from './Counter';
 
 ReactDOM.render((
                 <div>
@@ -41,6 +42,7 @@ ReactDOM.render((
                 <Synthetic />
                 <LoginControl />
                 <Page />
+                <Counter />
             </div>
             )
             , document.getElementById('my_root'));

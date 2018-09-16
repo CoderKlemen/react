@@ -28,7 +28,7 @@ class NameForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Select your favorite Croissant flavour:
+                    Select your favorite Croissant flavour (opens a pop-up):
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="grapefruit">Grapefruit</option>
                         <option value="orange">Orange</option>

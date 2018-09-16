@@ -8,7 +8,7 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search_by_date';
 const PARAM_SEARCH = 'query=';
 const TAG_SEARCH = 'tags=story';
-const PAGE_SEARCH = 'page='
+const PAGE_SEARCH = 'page=';
 
 // you can define style directly on the element, or outside to make them cleaner
 const largeColumn = {
@@ -156,7 +156,7 @@ class App extends Component {
 
     return (
       <div className="page">
-        <h3>--App--</h3>
+        <h3>---App---</h3>
         <div className="interactions">
           <Search 
             value={searchTerm}
@@ -241,3 +241,9 @@ const Button = ({onClick, className, children}) =>
 
 
 export default App;
+
+export {
+  Button,
+  Search,
+  Table
+};

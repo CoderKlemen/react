@@ -112,8 +112,8 @@ class Chat extends Component {
 class SignUpDialog extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSignUp = this.handleSignUp.bind(this);
+        //this.handleChange = this.handleChange.bind(this);
+        // this.handleSignUp = this.handleSignUp.bind(this);
         this.state = { login: ''};
     };
 
@@ -131,11 +131,11 @@ class SignUpDialog extends React.Component {
         );
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({login: e.target.value});
     };
 
-    handleSignUp() {
+    handleSignUp = () => {
         alert(`Welcome aboard, ${this.state.login}`);
     };
 

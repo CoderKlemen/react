@@ -105,8 +105,9 @@ class App2 extends Component {
         <h4>It is {this.state.date.toLocaleTimeString()}.</h4>
         <button type="button"
           // using arrow function to make sure the function is executed when we click the button
-          onClick={() => console.log(this.state.date.toLocaleDateString())}
+          onClick={() => this.setState({date: new Date()})}
         > Date </button>
+        <p>{this.state.date.toLocaleDateString()}</p>
         <Mailbox unreadMessages={messages} />
       </div>
     );

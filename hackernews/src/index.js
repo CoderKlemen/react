@@ -16,6 +16,7 @@ import Synthetic from './Synthetic';
 import LoginControl from './LoginControl';
 import Page from './Page';
 import Counter from './Counter';
+import Log from './test/i_head'
 
 ReactDOM.render((
                 <div>
@@ -38,6 +39,7 @@ ReactDOM.render((
 ReactDOM.render((
             <div>
                 <h3>--Different components--</h3>
+                <Log />
                 <Clock />
                 <Synthetic />
                 <LoginControl />
@@ -47,30 +49,8 @@ ReactDOM.render((
             )
             , document.getElementById('my_root'));
 
-
-/*
-function Clock(props) {
-    return (
-        <div>
-            <h3>Current time: </h3>
-            <span>{props.date.toLocaleTimeString()}</span> 
-        </div>
-    );
-};
-*/
-
-/*
-// foolin around
-const element = <h1>Hello, world!</h1>;
-
-ReactDOM.render(
-    element,
-
-    document.getElementById('root')
-);
-*/
-
 registerServiceWorker(); // not strictly needed; used to cache assets
+
 
 if (module.hot) {
     module.hot.accept();
